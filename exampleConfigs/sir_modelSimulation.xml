@@ -1,0 +1,18 @@
+<LuckyGuess>
+	<General>
+		<parameter name="path" value="test//"/>
+		<parameter name="rootname" value="temp_target"/>
+		<parameter name="seed" value="any"/>
+	</General>
+	<ModelSimulation>
+		<simulationParameter name="numberOfModels" value="10"/>
+		<simulationParameter name="replicatesPerModel" value="1"/>
+		<modelType 		name="SIRModel"/>
+		<modelParameter 	name="N" value="1000"/>
+		<modelParameter 	name="initialI" value="1"/>
+		<modelParameter 	name="b" value="2" prior="Normal" mean="2" stdev="2" lower="0.5" upper="2.5"/>
+		<modelParameter 	name="y" value="1" prior="Normal" mean="1" stdev="1" lower="0.5" upper="2.5"/>
+		<modelParameter 	name="dt" value="0.1"/>
+		<modelParameter 	name="maxReps" value="1000"/>
+	</ModelSimulation>
+</LuckyGuess>

@@ -1,0 +1,22 @@
+<LuckyGuess>
+	<General>
+		<parameter name="path" value="test//"/>
+		<parameter name="rootname" value="example_sir_inference"/>
+		<parameter name="seed" value="any"/>
+	</General>
+	<ModelInference>
+		<inferenceType 		name="StepDownRejector"/>
+		<inferenceParameter name="numberOfModels" value="100"/>
+		<inferenceParameter name="initialToleranceFraction" value="0.5"/>
+		<inferenceParameter name="toleranceReductionFactor" value="0.8"/>
+		<inferenceParameter name="maxIterations" value="5"/>
+		<modelType 			name="SIRModel"/>
+		<modelParameter 	name="N" value="1000"/>
+		<modelParameter 	name="initialI" value="1"/>
+		<modelParameter 	name="b" value="2" prior="Normal" mean="2" stdev="0.5" lower="0.5" upper="2.5"/>
+		<modelParameter 	name="y" value="1" prior="Normal" mean="1" stdev="0.5" lower="0.5" upper="2.5"/>
+		<modelParameter 	name="dt" value="0.1"/>
+		<modelParameter 	name="maxReps" value="1000"/>
+		<targetStatistic	name="calculateFromFile" value="test//example_sir_trace.txt"/>
+	</ModelInference>
+</LuckyGuess>

@@ -1,0 +1,18 @@
+<LuckyGuess>
+	<General>
+		<parameter name="path" value="test//"/>
+		<parameter name="rootname" value="example_sir"/>
+		<parameter name="seed" value="any"/>
+	</General>
+	<ModelSimulation>
+		<simulationParameter name="numberOfModels" value="1"/>
+		<simulationParameter name="replicatesPerModel" value="1"/>
+		<modelType 		name="SIRModel"/>
+		<modelParameter 	name="N" value="1000"/>
+		<modelParameter 	name="initialI" value="1"/>
+		<modelParameter 	name="b" value="2"/>
+		<modelParameter 	name="y" value="1"/>
+		<modelParameter 	name="dt" value="0.1"/>
+		<modelParameter 	name="maxReps" value="1000"/>
+	</ModelSimulation>
+</LuckyGuess>
