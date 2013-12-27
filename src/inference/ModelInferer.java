@@ -8,6 +8,7 @@ import java.util.List;
  * @author Samantha Lycett
  * @created 6 Dec 2013
  * @version 6 Dec 2013
+ * @version 27 Dec 2013 - added output file names
  *
  */
 public interface ModelInferer {
@@ -21,5 +22,8 @@ public interface ModelInferer {
 	
 	public List<SummaryResultStatistic> getGoodParameterEstimates();
 	public List<SummaryResultStatistic> getGoodResultStatistics();
+	
+	public void setOutputPath(String path);
+	public void setOutputRootname(String rootname);
 	
 }

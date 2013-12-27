@@ -221,7 +221,7 @@ public class SIRModel implements Model {
 	}
 	
 	/**
-	 * results the squared euclidean distance - e.g. (x1-x2)^2 + (y1-y2)^2
+	 * returns the squared euclidean distance of normalised target statistics - e.g. ((x1-x2)/x2)^2 + ((y1-y2)/y2)^2
 	 */
 	@Override
 	public double distanceFrom(List<Statistic> targetStatistics) {
@@ -235,7 +235,9 @@ public class SIRModel implements Model {
 				ResultStatistic resultStat 	= (ResultStatistic)stats.get(index);
 			
 				// compare the statistics
-				double  resultdist			= ((ResultStatistic)target).distanceFrom(resultStat);
+				//double  resultdist			= ((ResultStatistic)target).distanceFrom(resultStat);
+				double  resultdist			= resultStat.distanceFrom(target);
+				resultdist					= resultdist/target.getValue();
 				dist					   += (resultdist*resultdist);
 			} else {
 				System.out.println("SIRModel.closeTo - warning no result statistic for "+target.getName());

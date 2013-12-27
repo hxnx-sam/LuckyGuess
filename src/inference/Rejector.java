@@ -31,6 +31,10 @@ public class Rejector implements ModelInferer {
 	BatchOfModels 				bom 		= new BatchOfModels();
 	private boolean 			initialise 	= true;
 	
+	// for writing output files
+	String 						path;
+	String 						rootname;
+	
 	//////////////////////////////////////////
 	// CONSTRUCTORS
 	
@@ -86,6 +90,17 @@ public class Rejector implements ModelInferer {
 		
 	}
 
+	@Override
+	public void setOutputPath(String path) {
+		this.path = path;
+	}
+	
+	@Override
+	public void setOutputRootname(String rootname) {
+		this.rootname = rootname;
+	}
+	
+	//////////////////////////////////////////////////////////////////
 
 	@Override
 	public void run() {

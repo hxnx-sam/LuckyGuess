@@ -6,7 +6,7 @@
 	</General>
 	<ModelSimulation>
 		<simulationParameter name="numberOfModels" value="10"/>
-		<simulationParameter name="replicatesPerModel" value="1"/>
+		<simulationParameter name="replicatesPerModel" value="2"/>
 		<modelType 		name="SIRModel"/>
 		<modelParameter 	name="N" value="1000"/>
 		<modelParameter 	name="initialI" value="1"/>

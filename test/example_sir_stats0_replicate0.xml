@@ -1,0 +1,12 @@
+		<modelType	name="SIRModel"/>
+		<modelParameter	name="N"	value="1000.0"/>
+		<modelParameter	name="initialI"	value="1.0"/>
+		<modelParameter	name="b"	value="2.0"/>
+		<modelParameter	name="y"	value="1.0"/>
+		<modelParameter	name="dt"	value="0.1"/>
+		<modelParameter	name="maxReps"	value="1000.0"/>
+		<targetStatistic	name="peakInfecteds"	value="157.65906536006693"	tolerance="1.0E-8"/>
+		<targetStatistic	name="timeOfPeak"	value="6.999999999999991"	tolerance="1.0E-8"/>
+		<targetStatistic	name="areaUnderCurveS"	value="25011.945628255187"	tolerance="1.0E-8"/>
+		<targetStatistic	name="areaUnderCurveI"	value="802.8383446723763"	tolerance="1.0E-8"/>
+		<targetStatistic	name="areaUnderCurveR"	value="74385.21602707192"	tolerance="1.0E-8"/>

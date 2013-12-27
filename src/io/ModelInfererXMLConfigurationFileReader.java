@@ -21,9 +21,7 @@ import org.w3c.dom.NodeList;
  * @created 9 Dec 2013
  * @version 9 Dec 2013
  * @version 11 Dec 2013
- * 
- * 
- * 20 DEC 2013 - TO DO - fix the target statistics reading from xml file, at the moment it is just hard coded for testing
+ * @version 27 Dec 2013
  * 
  */
 
@@ -61,22 +59,6 @@ public class ModelInfererXMLConfigurationFileReader {
 	}
 
 	public List<Statistic> getTargetStatistics() {
-		
-		
-		// temp for testing
-		System.out.println("-- hard coded for testing --");
-		List<Statistic>				targetStatistics = new ArrayList<Statistic>();
-		targetStatistics.add(new ResultStatistic("peakInfecteds", 157.659, 16.0));
-		targetStatistics.add(new ResultStatistic("timeOfPeak", 7.0, 0.7));
-		targetStatistics.add(new ResultStatistic("areaUnderCurveS", 25011.95, 2501.0));
-		targetStatistics.add(new ResultStatistic("areaUnderCurveI", 802.84, 80.2));
-		targetStatistics.add(new ResultStatistic("areaUnderCurveR", 74385.21, 7438.5));
-		System.out.println("Hard coded");
-		for (Statistic stat : targetStatistics) {
-			System.out.println(stat.toString());
-		}
-		
-		
 		
 		return targetStatistics;
 	}
@@ -334,11 +316,14 @@ public class ModelInfererXMLConfigurationFileReader {
 						
 			} else {
 			
-				Double val   = Double.parseDouble(value);
+				Double val   	 = Double.parseDouble(value);
 				
-				// included a nominal 10% tolerance
-				Statistic ts  = new ResultStatistic( name, val, val*0.1 );
+				String tolerance = ((Element)node).getAttributes().getNamedItem("tolerance").getNodeValue();
+				Double tol   	 = Double.parseDouble(tolerance);
+				
+				Statistic ts  = new ResultStatistic( name, val, tol );
 				this.targetStatistics.add(ts);
+				
 			
 				if (verbose) {
 					System.out.println("TargetStatistic = "+ts.toString());

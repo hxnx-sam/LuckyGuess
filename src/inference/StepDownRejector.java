@@ -1,7 +1,12 @@
 package inference;
 
+import io.ModelSingleLineOutput;
+import io.TraceFileWriter;
+
 import java.util.ArrayList;
 import java.util.List;
+
+import math.Distributions;
 import abc.*;
 
 /**
@@ -10,6 +15,7 @@ import abc.*;
  * @created 6 Dec 2013
  * @version 6 Dec 2013
  * @version 11 Dec 2013
+ * @version 27 Dec 2013
  */
 public class StepDownRejector implements ModelInferer {
 	
@@ -29,6 +35,12 @@ public class StepDownRejector implements ModelInferer {
 	int 						maxIts 					 = 10;
 	double						initialToleranceFraction = 0.5;		// 50%
 	double 						tolfactor 				 = 0.8;		// i.e. reduce tolerance fraction by 20% of current each iteration
+	
+	// for writing output files
+	String 						path;
+	String 						rootname;
+	String						ext = "_stepDownRejector_model_stats.txt";
+	TraceFileWriter				outputFile;
 	
 		
 	//////////////////////////////////////////
@@ -88,10 +100,22 @@ public class StepDownRejector implements ModelInferer {
 		this.tolfactor = tolfactor;
 	}
 	
+	@Override
+	public void setOutputPath(String path) {
+		this.path = path;
+	}
+	
+	@Override
+	public void setOutputRootname(String rootname) {
+		this.rootname = rootname;
+	}
+	
 	///////////////////////////////////////////////////////////////////////
 	
 	@Override
 	public void run() {
+		
+		
 		
 		/////////////////////////////////////////////
 		// iterations 0 to max-1
@@ -140,7 +164,28 @@ public class StepDownRejector implements ModelInferer {
 				*/
 			}
 			
+			if ((rootname != null) && (numIts==0))  {
+				outputFile = new TraceFileWriter( path + rootname + ext );
+				String header = "#"+this.getClass().getSimpleName()+" seed="+Distributions.getSeed();
+				outputFile.writeHeader(header);
+			
+				String[] colNames = ModelSingleLineOutput.composeValuesHeader("Iteration", "ModelNumber", bom.getModels()[0], bom.getTargetStats());
+				outputFile.writeColumnNames(colNames);
+			}
+			
+			// this is not very efficient since the "closeTo" has already been calculated
+			if ( outputFile != null ) {
+				for (int j = 0; j < bom.getModels().length; j++ ) {
+					Model m = bom.getModels()[j];
+					outputFile.writeRow(ModelSingleLineOutput.composeValuesLine(numIts, j, m, bom.getTargetStats()));
+				}
+			}
+			
 			numIts++;
+		}
+		
+		if (outputFile != null) {
+			outputFile.closeFile();
 		}
 		
 	}

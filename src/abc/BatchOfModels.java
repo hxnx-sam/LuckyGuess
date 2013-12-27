@@ -64,6 +64,10 @@ public class BatchOfModels {
 		return goodParameterEstimates;
 	}
 	
+	public Model[] getModels() {
+		return models;
+	}
+	
 	/**
 	 * returns the summary (mean, dev, etc) for the named input parameter p
 	 * @param p
@@ -178,6 +182,9 @@ public class BatchOfModels {
 		
 	}
 	
+	//////////////////////////////////////////////////////////////////////////////////////
+	// FOR ALL  MODELS
+	
 	/**
 	 * returns a summary (mean, stdev, min, max) of all models' result statistics regardless of whether in tolerance or not
 	 * use for testing
@@ -257,7 +264,8 @@ public class BatchOfModels {
 		
 	}
 	
-	
+	/////////////////////////////////////////////////////////////////////////
+	// FOR GOOD MODELS ONLY
 	
 	public void summariseGoodModels() {
 		/*
@@ -336,6 +344,8 @@ public class BatchOfModels {
 		}
 		
 	}
+	
+	///////////////////////////////////////////////////////////////////////////////////
 	
 	public String toString() {
 		String eol 		 = "\n";

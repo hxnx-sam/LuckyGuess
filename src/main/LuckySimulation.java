@@ -100,9 +100,13 @@ public class LuckySimulation {
 				// output one trace file for each replicate of each model
 				String traceFileName  	= path + rootname + "_trace" + i + "_replicate" + j + ".txt";
 				simModel.run_traceToFile(traceFileName);
+			
+				// output one xml fragment file containing parameters and statistics for each model
+				String statsName		= path + rootname + "_stats" + i + "_replicate" + j + ".xml";
+				new ModelXMLOutput(statsName, simModel);
 				
 				// collect statistics and write as a single single in stats output file
-				List<Statistic> stats 	= simModel.getStatistics();
+				//List<Statistic> stats 	= simModel.getStatistics();
 			
 				/*
 				if (j==0) {
@@ -139,7 +143,7 @@ public class LuckySimulation {
 				*/
 				
 				
-
+				/*
 				// compose summary data
 				int ncols 	  		= 1 + 1+ modelParameters.size() + stats.size();
 				String[] colNames	= new String[ncols];
@@ -161,15 +165,19 @@ public class LuckySimulation {
 					summaryVals[count]	= stat.getValue();
 					count++;
 				}
+				*/
 					
 				// write header parameters and stats summary file
 				if ((i==0) && (j==0)) {
 					String header = "#" + this.getClass().getSimpleName() + "\tconfigFile="+xmlFile.getFileName()+"\tseed="+seed;
 					outFile.writeHeader(header);
+					
+					String[] colNames = ModelSingleLineOutput.composeValuesHeader("Model", "Replicate", simModel);
 					outFile.writeColumnNames(colNames);	
 				}
 				
 				// write summary values
+				Double[] summaryVals = ModelSingleLineOutput.composeValuesLine(i, j, simModel);
 				outFile.writeRow(summaryVals);
 				
 			} // end of replicates per model
@@ -185,7 +193,8 @@ public class LuckySimulation {
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
 	public static void test() {
-		String xmlFileName = "exampleConfigs//example_sir_modelSimulation.xml";
+		//String xmlFileName = "exampleConfigs//example_sir_modelSimulation.xml";
+		String xmlFileName = "exampleConfigs//sir_modelSimulation.xml";
 		new LuckySimulation(xmlFileName);
 	}
 	

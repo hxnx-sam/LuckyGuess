@@ -1,3 +1,3 @@
-#LuckySimulation	configFile=exampleConfigs//example_sir_modelSimulation.xml	seed=-2110947934
+#LuckySimulation	configFile=exampleConfigs//example_sir_modelSimulation.xml	seed=-1730426037
 Model	Replicate	N	initialI	b	y	dt	maxReps	peakInfecteds	timeOfPeak	areaUnderCurveS	areaUnderCurveI	areaUnderCurveR
 0.0	0.0	1000.0	1.0	2.0	1.0	0.1	1000.0	157.65906536006693	6.999999999999991	25011.945628255187	802.8383446723763	74385.21602707192

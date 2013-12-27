@@ -17,10 +17,6 @@
 		<modelParameter 	name="y" value="1" prior="Normal" mean="1" stdev="0.5" lower="0.5" upper="2.5"/>
 		<modelParameter 	name="dt" value="0.1"/>
 		<modelParameter 	name="maxReps" value="1000"/>
-		<targetStatistic	name="peakInfecteds"	value="157.65906536006693"	tolerance="15.7"/>
-		<targetStatistic	name="timeOfPeak"	value="6.999999999999991"	tolerance="0.7"/>
-		<targetStatistic	name="areaUnderCurveS"	value="25011.945628255187"	tolerance="2501.0"/>
-		<targetStatistic	name="areaUnderCurveI"	value="802.8383446723763"	tolerance="80.2"/>
-		<targetStatistic	name="areaUnderCurveR"	value="74385.21602707192"	tolerance="7438.5"/>
+		<targetStatistic	name="calculateFromFile" value="test//example_sir_trace.txt"/>
 	</ModelInference>
 </LuckyGuess>

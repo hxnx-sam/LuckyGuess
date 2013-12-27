@@ -2,16 +2,20 @@ package inference;
 
 import java.util.List;
 
+import math.Distributions;
+
 import abc.Model;
 import abc.Parameter;
 import abc.ParameterWithPrior;
 import abc.Statistic;
+import abc.TextParameter;
 import io.ModelInfererXMLConfigurationFileReader;
 
 /**
  * factory class to create a model inferer based on the parameters in the xml configuration file
  * @author Samantha Lycett
  * @version 11 Dec 2013
+ * @version 27 Dec 2013
  */
 public class ModelInferenceFactory {
 	
@@ -21,7 +25,22 @@ public class ModelInferenceFactory {
 	 * @return
 	 */
 	public static ModelInferer createModelInferer(ModelInfererXMLConfigurationFileReader xmlFile) {
-		//List<TextParameter>			generalParameters 	= xmlFile.getGeneralParameters();
+		
+		// general parameters
+		List<TextParameter> generalParameters = xmlFile.getGeneralParameters();
+		
+		String path 		= generalParameters.get(generalParameters.indexOf(new TextParameter("path","x"))).getValue();
+		String rootname		= generalParameters.get(generalParameters.indexOf(new TextParameter("rootname","x"))).getValue();
+		String seedTxt		= generalParameters.get(generalParameters.indexOf(new TextParameter("seed","x"))).getValue();
+		long seed;
+		try {
+			seed		= Long.parseLong(seedTxt);
+			Distributions.initialiseWithSeed((int)seed);
+		} catch (NumberFormatException e) {
+			seed		= Distributions.initialise();
+		}
+		
+		// model inference parameters
 		String 						modelInferenceType	= xmlFile.getModelInferenceType();
 		List<Parameter>				modelInferenceParameters = xmlFile.getModelInferenceParameters();
 		List<Statistic> 		 	targetStatistics	= xmlFile.getTargetStatistics();
@@ -64,6 +83,9 @@ public class ModelInferenceFactory {
 			System.out.println(inferer.toString());
 			
 		}
+		
+		inferer.setOutputPath(path);
+		inferer.setOutputRootname(rootname);
 		
 		return inferer;
 	}

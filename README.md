@@ -13,9 +13,6 @@ Directories:
 * test - directory where the results of LuckyGuess and LuckySimulation can be written for testing purposes
 
 To run:
-20 Dec 2013 - This project is under development, so at the moment you will need to load it into Eclipse and then run a class from package "main".
+27 Dec 2013 - This project is under development, so at the moment you will need to load it into Eclipse and then run a class from package "main".
 * LuckyGuess - reads parameters from the input xml and performs the ABC inference
 * LuckySimulation - reads parameters from the input xml and runs a bunch of simulations only.
-
-Notes:
-20 Dec 2013 - LuckyGuess not quite running properly, there is an issue with reading target statistics from the input xml file.
